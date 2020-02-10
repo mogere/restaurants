@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:background="#000000">
 
-<!--    <ImageView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/imageView"-->
-<!--        android:src="@drawable/restaurant"-->
-<!--        android:scaleType="centerCrop" />-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="1000dp"
+        android:layout_height="1000dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/restaurant" />
 
     <TextView
         android:id="@+id/appNameTextView"
@@ -28,17 +28,17 @@
 
     <EditText
         android:id="@+id/locationEditText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/findRestaurantsButton"
-        android:layout_alignRight="@+id/findRestaurantsButton"
+        android:layout_alignStart="@+id/findRestaurantsButton"
+        android:layout_alignLeft="@+id/findRestaurantsButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="115dp"
-        android:layout_marginRight="115dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginStart="-36dp"
+        android:layout_marginLeft="-36dp"
+        android:layout_marginBottom="66dp"
         android:background="@color/colorTextIcons"
         android:hint="Enter Zip Code"
-        android:padding="5dp" />
+        android:padding="20dp" />
 
     <Button
         android:id="@+id/findRestaurantsButton"
