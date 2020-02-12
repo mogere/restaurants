@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import com.example.myrestaurants.R;
 import com.example.myrestaurants.adapters.RestaurantListAdapter;
 import com.example.myrestaurants.models.Business;
+import com.example.myrestaurants.models.Constants;
 import com.example.myrestaurants.network.YelpApi;
 import com.example.myrestaurants.network.YelpBusinessesSearchResponse;
 import com.example.myrestaurants.network.YelpClient;
@@ -27,6 +30,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RestaurantsListActivity extends AppCompatActivity {
+
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
 
     public static final String TAG = RestaurantsListActivity.class.getSimpleName();
 
@@ -84,6 +90,10 @@ public class RestaurantsListActivity extends AppCompatActivity {
             }
 
         });
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+        Log.d("Shared Pref Location", mRecentAddress);
     }
     private void showFailureMessage() {
         mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
