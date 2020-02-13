@@ -31,8 +31,8 @@ import retrofit2.Response;
 
 public class RestaurantsListActivity extends AppCompatActivity {
 
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
 
     public static final String TAG = RestaurantsListActivity.class.getSimpleName();
 
@@ -54,6 +54,7 @@ public class RestaurantsListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
         Log.d(TAG, "In the onCreate method!");
+
 
         YelpApi client = YelpClient.getClient();
 
@@ -91,9 +92,14 @@ public class RestaurantsListActivity extends AppCompatActivity {
 
         });
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
-        Log.d("Shared Pref Location", mRecentAddress);
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//if (mRecentAddress != null) {
+//           getRestaurants(mRecentAddress);
+//        }
+
+            client.getRestaurants(location, "restaurants");
+
     }
     private void showFailureMessage() {
         mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
