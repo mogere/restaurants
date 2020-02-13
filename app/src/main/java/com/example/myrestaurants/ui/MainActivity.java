@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    private SharedPreferences.Editor mEditor;
 
     private DatabaseReference mSearchedLocationReference;
+    private ValueEventListener mSearchedLocationReferenceListener;
 
 
     @BindView(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .getReference()
                 .child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);
 
-        mSearchedLocationReference.addValueEventListener(new ValueEventListener() { //attach listener
+        mSearchedLocationReferenceListener =mSearchedLocationReference.addValueEventListener(new ValueEventListener() { //attach listener
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) { //something changed!
@@ -77,6 +78,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DatabaseReference ref = database.getReference();
         mFindRestaurantsButton.setOnClickListener(this);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSearchedLocationReference.removeEventListener(mSearchedLocationReferenceListener);
+    }
+
     @Override
     public void onClick(View v){
         if(v== mFindRestaurantsButton) {
