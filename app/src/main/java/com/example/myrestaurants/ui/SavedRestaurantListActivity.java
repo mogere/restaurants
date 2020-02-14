@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.myrestaurants.R;
 import com.example.myrestaurants.adapters.FirebaseRestaurantViewHolder;
+import com.example.myrestaurants.models.Business;
 import com.example.myrestaurants.models.Constants;
 import com.example.myrestaurants.models.Restaurant;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -24,7 +25,7 @@ import butterknife.ButterKnife;
 
 public class SavedRestaurantListActivity extends AppCompatActivity {
     private DatabaseReference mRestaurantReference;
-    private FirebaseRecyclerAdapter<Restaurant, FirebaseRestaurantViewHolder> mFirebaseAdapter;
+    private FirebaseRecyclerAdapter<Business, FirebaseRestaurantViewHolder> mFirebaseAdapter;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
@@ -40,15 +41,15 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
     }
 
     private void setUpFirebaseAdapter(){
-        FirebaseRecyclerOptions<Restaurant> options =
-                new FirebaseRecyclerOptions.Builder<Restaurant>()
-                        .setQuery(mRestaurantReference, Restaurant.class)
+        FirebaseRecyclerOptions<Business> options =
+                new FirebaseRecyclerOptions.Builder<Business>()
+                        .setQuery(mRestaurantReference, Business.class)
                         .build();
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Restaurant, FirebaseRestaurantViewHolder>(options) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Business, FirebaseRestaurantViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull FirebaseRestaurantViewHolder firebaseRestaurantViewHolder, int position, @NonNull Restaurant restaurant) {
-                firebaseRestaurantViewHolder.bindRestaurant(restaurant);
+            protected void onBindViewHolder(@NonNull FirebaseRestaurantViewHolder firebaseRestaurantViewHolder, int position, @NonNull Business business) {
+                firebaseRestaurantViewHolder.bindRestaurant(business);
             }
 
             @NonNull

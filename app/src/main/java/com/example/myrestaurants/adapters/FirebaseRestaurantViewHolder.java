@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myrestaurants.R;
+import com.example.myrestaurants.models.Business;
 import com.example.myrestaurants.models.Constants;
 import com.example.myrestaurants.models.Restaurant;
 import com.example.myrestaurants.ui.RestaurantDetailActivity;
@@ -35,7 +36,7 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
         itemView.setOnClickListener(this);
     }
 
-    public void bindRestaurant(Restaurant restaurant) {
+    public void bindRestaurant(Business restaurant) {
         ImageView restaurantImageView = (ImageView) mView.findViewById(R.id.restaurantImageView);
         TextView nameTextView = (TextView) mView.findViewById(R.id.restaurantNameTextView);
         TextView categoryTextView = (TextView) mView.findViewById(R.id.categoryTextView);
@@ -44,7 +45,7 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
         Picasso.get().load(restaurant.getImageUrl()).into(restaurantImageView);
 
         nameTextView.setText(restaurant.getName());
-        categoryTextView.setText(restaurant.getCategories().get(0));
+        categoryTextView.setText(restaurant.getCategories().get(0).getTitle());
         ratingTextView.setText("Rating: " + restaurant.getRating() + "/5");
     }
 
